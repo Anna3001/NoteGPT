@@ -19,7 +19,11 @@ Działanie aplikacji obejmuje następujące funkcjonalności:
 
 ![obraz](https://github.com/Anna3001/NoteGPT/assets/110662890/2f720695-394d-485f-9e5c-374e41097410)
 
+![obraz](https://github.com/Anna3001/NoteGPT/assets/110662890/a40409ad-30b2-45f2-a9e7-43ff84694abe)
+
 ![obraz](https://github.com/Anna3001/NoteGPT/assets/110662890/3172cacc-5f3c-4952-9dfb-ac30c84fa835)
+
+![obraz](https://github.com/Anna3001/NoteGPT/assets/110662890/b0f7b9db-32ac-4e0c-9fad-6037465286de)
 
 ![obraz](https://github.com/Anna3001/NoteGPT/assets/110662890/c3f7959c-df38-4fcc-84c1-f44a983c4ab1)
 
