@@ -1,6 +1,8 @@
 # NoteGPT
 Note taking application using ChatGPT
 
+Kod -> branch master
+
 Aplikacja webowa do tworzenia notate, korzystająca z narzędzia ChatGPT.
 
 Działanie aplikacji obejmuje następujące funkcjonalności:
