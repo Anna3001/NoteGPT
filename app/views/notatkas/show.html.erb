@@ -1,0 +1,26 @@
+<%= render partial: 'partials/header' %>
+<p id="notice"><%= notice %></p>
+<script src="https://cdn.tailwindcss.com/"></script>
+<div style="border-top: 30px solid <%= @notatka.color %>;"></div>
+<div class="max-w-custom py-4 px-8 bg-white shadow-lg rounded-lg my-20">
+  <div class="flex justify-center md:justify-end -mt-16"></div>
+  <div>
+    <h2 class="text-gray-800 text-5xl font-semibold"><%= @notatka.tytul %></h2>
+    <p class="mt-5 text-gray-600"><%= @notatka.tekst %></p>
+    <p class="py-5"></p>
+
+    <%# BUTTONS 'Delete', 'Edit', 'Back' %>
+    <div class="flex justify-end">
+      <div class="button-container flex">
+        <%= button_to "Delete", @notatka, method: :delete, class: "rounded-xl ml-8 bg-orange-400 px-4 py-2 text-white" %>
+        <%= link_to 'Edit', edit_notatka_path(@notatka), class: "rounded-xl ml-8 bg-lime-500 px-4 py-2 text-white" %>
+        <button class="rounded-xl ml-8 bg-violet-500 px-4 py-2 text-white"><%= link_to 'Back', notatkas_path %></button>
+      </div>
+    </div>
+  </div>
+
+  <p>Kategoria notatki: <%= @notatka.kategoria %></p>
+  <p>User ID: <%= @notatka.user_id %></p>
+</div>
+
+

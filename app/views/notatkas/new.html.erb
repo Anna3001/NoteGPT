@@ -1,0 +1,10 @@
+<%= render partial: 'partials/header' %>
+<h1>New notatka</h1>
+
+<%= render "form", notatka: @notatka %>
+
+<br>
+
+<div>
+  <%= link_to "Back to notatkas", notatkas_path %>
+</div>

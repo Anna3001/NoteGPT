@@ -1,0 +1,26 @@
+<%= render partial: 'partials/header' %>
+<div class="grid grid-cols-2 gap-4 bg-white p-4">
+        <div class="bg-white p-4"><img class="w-3/4 rounded-xl" src="/robot1.png"  /></div>
+        <div class="bg-white pt-48 p-4"><h2 class="text-4xl font-bold font-mono sm:text-5xl">
+        Your AI notes!
+        <span class="hidden sm:block text-2xl pt-8">
+          <% if !user_signed_in? %> 
+            NoteGPT is a cutting-edge note-taking app with ChatGPT's technology, which allows users to quickly and easily create detailed notes with the help of AI-generated text
+          <% else %>
+          
+            Hello again
+            <%= "#{current_user.email} \u{1F60D}" %>
+            <%= button_to "Delete Account",
+                  user_path(current_user),
+                  method: :delete,
+                  data: { confirm: "Are you sure you want to delete your account?" },
+                  class: "absolute bottom-8 right-8 rounded-xl ml-8 bg-red-500 text-black px-4 py-2",
+                  remote: true %>          <% end %>  
+        </span>
+      </h2></div>
+    </div>
+
+<p class="py-10"></p>
+<% if !user_signed_in? %>
+<%= render partial: 'partials/footer' %>
+<% end %>

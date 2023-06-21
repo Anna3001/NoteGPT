@@ -1,0 +1,15 @@
+<nav class="flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-slate-500 text-white shadow sm:items-baseline w-full">
+  <div class="mb-2 sm:mb-0">
+    <a href="/" class="text-4xl no-underline text-grey-darkest hover:text-blue-dark">NoteGPT</a>
+  </div>
+  <div>
+    <% if !user_signed_in? %> 
+      <%= button_to "Sign in", new_user_session_path, class: "rounded-xl ml-8 bg-yellow-500 text-black px-4 py-2" %>
+    <% else %>
+      <div class="flex space-x-4">
+        <a href="/notatkas" class="font-mono text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">Profile</a>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "font-mono text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2" %>
+      </div>
+    <% end %> 
+  </div>
+</nav>

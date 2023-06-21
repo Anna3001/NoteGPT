@@ -1,0 +1,70 @@
+<%= render partial: 'partials/header' %>
+<p id="notice"><%= notice %></p>
+
+<div class="container mx-auto">
+  <%# HEADER %>
+  <div class="flex items-center">
+    <h1 class="py-5 text-gray-800 text-4xl pl-6 font-semibold inline-block">My notes: <%= @notatkas.count %></h1>
+    <button class="rounded-xl ml-8 bg-lime-500 px-4 py-2 text-white"><%= link_to 'New note', new_notatka_path %></button>
+  </div>
+
+  <div class="py-6"></div>
+
+  <% @notatkas.group_by(&:kategoria).sort.to_h.each do |kategoria, notatkas| %>
+    <%# Category Section %>
+    <h2 class="text-3xl bg-violet-200 mx-auto p-2 w-3/4 truncate shadow rounded-lg font-semibold mb-4 cursor-pointer" onclick="toggleCategory('<%= kategoria %>')"><%= kategoria %> : <%= notatkas.count %></h2>
+    
+    <div class="grid hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7" id="<%= kategoria %>">
+      <% if Category.exists?(title: kategoria) %>
+      <p class="absolute px-8 m-8">  <%= Category.where(title: kategoria).first.description %> </p>
+      <% end %>
+
+      <% notatkas.each do |notatka| %>
+        <div class="flex justify-center pt-32">
+          <div class="relative flex flex-col rounded-xl max-w-[200px] bg-white shadow-xl p-4">
+            <div class="h-full w-full">
+              <div class="relative w-full">
+                <% if notatka.color? %>
+                  <% if notatka.color.length < 10 %>
+                    <div class="mb-3 h-32 w-full rounded-xl bg-[<%= notatka.color %>]"></div>
+                  <% else %>
+                    <img class="mb-3 h-32 w-full rounded-xl" src=<%= notatka.color %>>
+                  <% end %>
+                <% else %>
+                  <div class="mb-3 h-32 w-full rounded-xl bg-slate-500"></div>
+                <% end %>  
+              </div>
+              <div class="mb-3 flex items-center justify-between px-1 md:items-start">
+                <div class="mb-2 truncate">
+                  <p class="text-lg font-bold text-black"><%= notatka.tytul %></p>
+                  <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2"><%= notatka.user_id %></p>
+                </div>
+                <div class="flex flex-row-reverse md:mt-2 lg:mt-0"></div>
+              </div>
+              <div class="flex items-center justify-between md:items-center lg:justify-between">
+                <div class="flex">
+                  <p class="!mb-0 text-sm font-bold text-brand-500"><%= notatka.created_at.strftime('%Y %B %e') %></p>
+                </div>
+                <%# BUTTON 'Show' %>
+                <button class="rounded-xl ml-8 bg-violet-500 px-4 py-2 text-white"><%= link_to 'Show', notatka %></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <br>
+  <% end %>
+
+  <%# BUTTON 'Nowa Notatka' %>
+
+  <div class="py-6"></div>
+</div>
+
+<script>
+  function toggleCategory(categoryId) {
+    var categoryElement = document.getElementById(categoryId);
+    categoryElement.classList.toggle('hidden')
+
+  }
+</script>

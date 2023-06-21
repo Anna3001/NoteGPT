@@ -1,0 +1,64 @@
+<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="textField">
+      Enter ChatGPT query:
+    </label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="textField" type="text" name="textField" placeholder="Enter your text for ChatGPT here...">
+  </div>
+  <div class="flex items-center justify-between">
+    <button type=submit class="bg-purple-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="redirectToPage()">
+      Submit
+    </button>
+  </div>
+</form>
+
+<div class="px-24">
+
+    <%= form_with(model: notatka) do |form| %>
+        <% if notatka.errors.any? %>
+            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+                <h2 class="font-bold mb-2"><%= pluralize(notatka.errors.count, "error") %> prohibited this note from being saved:</h2>
+                <ul class="list-disc ml-4">
+                    <% notatka.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+    <div class="mb-4">
+        <%= form.label :tytul, "Title:", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :tytul, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: true %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+
+
+
+    <script>
+        function redirectToPage() {
+                const textFieldValue = document.getElementById("textField").value;
+                window.location.href = window.location.pathname + "?query=" + textFieldValue;
+        }
+    </script>
+
+    <div class="mb-4">
+        <%= form.label :tekst, "Text:", class: "block text-gray-700 font-bold mb-2" %>
+       <%= form.text_area :tekst, value: @q, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", style: "height: auto; min-height: 50px; resize: vertical;", required: true %>
+    </div>
+
+    <div class="mb-4">
+        <%= form.label :kategoria, "Category:", class: "block text-gray-700 font-bold mb-2" %>
+    <%= form.text_field :kategoria, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required: true %>
+    </div>
+
+    <div class="mb-4">
+        <%= form.label :color, "Color or image link:", class: "block text-gray-700 font-bold mb-2" %>
+        <%= form.text_field :color, placeholder: "#ff8833", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="flex justify-end">
+        <%= form.submit "Save", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+<% end %>
+</div> 
